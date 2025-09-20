@@ -1,0 +1,13 @@
+PS C:\Users\kubilay.candan\n11-cypress> Select-String -Path "cypress\support\step_definitions\*.js" -Pattern "ana sayfayı açarım"
+
+cypress\support\step_definitions\common.steps.js:3:Given("ana sayfayı açarım", () => {
+cypress\support\step_definitions\home.steps.js:3:Given("ana sayfayı açarım", () => {
+
+
+PS C:\Users\kubilay.candan\n11-cypress> findstr /s /i "ana sayfayı açarım" cypress\support\step_definitions\*.js
+cypress\support\step_definitions\common.steps.js:Given("ana sayfay─▒ a├ğar─▒m", () => {
+cypress\support\step_definitions\home.steps.js:Given("ana sayfay─▒ a├ğar─▒m", () => {
+cypress\support\step_definitions\signup.steps.js:  cy.get("#country").select("Canada");
+PS C:\Users\kubilay.candan\n11-cypress>
+
+burada eğer multiple hatası verirse ve hangi dosyada oldugu gorunmezse sorgulamak icin kullanılır
