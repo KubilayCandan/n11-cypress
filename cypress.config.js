@@ -7,23 +7,51 @@ const createEsbuildPlugin =
 
 module.exports = defineConfig({
   e2e: {
-    baseUrl: "https://automationexercise.com",  // kendi sitene göre ayarladın
+    baseUrl: "https://automationexercise.com",
     specPattern: "**/*.feature",
     supportFile: "cypress/support/e2e.js",
-    video: true,                   // 🎥 video kaydını aç
-    videosFolder: "cypress/videos", // kayıtların klasörü
-    videoCompression: 32,          // 0 = sıkıştırma yok, kalite yüksek, dosya büyük
-    videoUploadOnPasses: true,     // passed olsa da videoyu sakla
-    screenshotOnRunFailure: true,  // hata olursa screenshot al
-    setupNodeEvents(on, config) {
-      addCucumberPreprocessorPlugin(on, config);
+
+    // 📌 Video ve Screenshot ayarları
+    video: true,
+    videosFolder: "cypress/videos",
+    videoCompression: 32,
+    videoUploadOnPasses: true,
+    screenshotOnRunFailure: true,
+
+    async setupNodeEvents(on, config) {
+      // Cucumber preprocessor
+      await addCucumberPreprocessorPlugin(on, config);
+
+      // Esbuild bundler
       on(
         "file:preprocessor",
         createBundler({ plugins: [createEsbuildPlugin(config)] })
       );
+
+      // Mochawesome plugin
+      require("cypress-mochawesome-reporter/plugin")(on);
+
       return config;
     },
-    
   },
 
+  // 📌 Multi reporter: hem JUnit hem Mochawesome
+  reporter: "cypress-multi-reporters",
+  reporterOptions: {
+    reporterEnabled: "mochawesome, mocha-junit-reporter",
+
+    // Mochawesome ayarları
+    mochawesomeReporterOptions: {
+      reportDir: "cypress/results/mochawesome",
+      overwrite: false,
+      html: true,
+      json: true,
+    },
+
+    // JUnit ayarları
+    mochaJunitReporterReporterOptions: {
+      mochaFile: "cypress/results/junit/results-[hash].xml",
+      toConsole: true,
+    },
+  },
 });
