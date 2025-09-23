@@ -1,12 +1,12 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Checkout') {
-            steps {
-                git 'https://github.com/KubilayCandan/n11-cypress.git'
-            }
-        }
+    stage('Checkout') {
+    steps {
+        git branch: 'main',
+            url: 'https://github.com/KubilayCandan/n11-cypress.git'
+    }
+}
 
         stage('Install Dependencies') {
             steps {
