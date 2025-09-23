@@ -1,12 +1,13 @@
 pipeline {
     agent any
 
-    stage('Checkout') {
-    steps {
-        git branch: 'main',
-            url: 'https://github.com/KubilayCandan/n11-cypress.git'
-    }
-}
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main',
+                    url: 'https://github.com/KubilayCandan/n11-cypress.git'
+            }
+        }
 
         stage('Install Dependencies') {
             steps {
@@ -23,10 +24,10 @@ pipeline {
 
     post {
         always {
-            // JUnit XML raporlarını Jenkins'e aktar
+            // 📌 JUnit XML raporlarını Jenkins'e aktar
             junit 'cypress/results/junit/*.xml'
 
-            // Mochawesome HTML raporunu Jenkins'te yayınla
+            // 📌 Mochawesome HTML raporunu Jenkins'te yayınla
             publishHTML(target: [
                 allowMissing: true,
                 alwaysLinkToLastBuild: true,
