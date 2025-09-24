@@ -20,6 +20,12 @@ pipeline {
                 bat 'npm test'
             }
         }
+        stage('Install Dependencies') {
+            steps {
+                bat 'npm install'
+                bat 'npx cypress install'
+            }
+        }
     }
 
     post {
