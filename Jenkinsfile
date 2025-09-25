@@ -1,6 +1,11 @@
 pipeline {
     agent any
 
+    parameters {
+        choice(name: 'ENV', choices: ['dev', 'stage', 'prod'], description: 'Hangi ortamda çalıştırılsın?')
+        string(name: 'TAGS', defaultValue: '', description: 'Cucumber tag (örn: @smoke)')
+    }
+
     stages {
         stage('Checkout') {
             steps {

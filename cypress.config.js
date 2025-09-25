@@ -7,7 +7,7 @@ const createEsbuildPlugin =
 
 module.exports = defineConfig({
   e2e: {
-    baseUrl: "https://automationexercise.com",
+    baseUrl: process.env.BASE_URL || "https://automationexercise.com",
     specPattern: "**/*.feature",
     supportFile: "cypress/support/e2e.js",
 
