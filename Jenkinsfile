@@ -4,18 +4,15 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main',
-                    url: 'https://github.com/KubilayCandan/n11-cypress.git'
+                git 'https://github.com/KubilayCandan/n11-cypress.git'
             }
         }
-
         stage('Install Dependencies') {
             steps {
                 bat 'npm install'
                 bat 'npx cypress install'
             }
         }
-
         stage('Run Cypress Tests & Generate Reports') {
             steps {
                 bat 'npm test'
@@ -25,10 +22,10 @@ pipeline {
 
     post {
         always {
-            // 📌 JUnit XML raporlarını Jenkins'e aktar
+            // JUnit test raporlarını yükle
             junit 'cypress/results/junit/*.xml'
 
-            // 📌 Mochawesome HTML raporunu Jenkins'te yayınla
+            // HTML raporu yayınla
             publishHTML(target: [
                 allowMissing: true,
                 alwaysLinkToLastBuild: true,
@@ -37,24 +34,10 @@ pipeline {
                 reportFiles: 'mochawesome.html',
                 reportName: 'Cypress HTML Report'
             ])
-        }post {
-    always {
-        // JUnit raporlarını topla
-        junit 'cypress/results/junit/*.xml'
 
-        // HTML raporu yayınla
-        publishHTML(target: [
-            allowMissing: true,
-            alwaysLinkToLastBuild: true,
-            keepAll: true,
-            reportDir: 'cypress/results/mochawesome',
-            reportFiles: 'mochawesome.html',
-            reportName: 'Cypress HTML Report'
-        ])
-
-        // ✅ Screenshot ve video klasörlerini artifact olarak arşivle
-        archiveArtifacts artifacts: 'cypress/screenshots/**/*.*, cypress/videos/**/*.*', fingerprint: true
-    }
-}
+            // Cypress video ve screenshot klasörlerini arşivle
+            archiveArtifacts artifacts: 'cypress/videos/**/*.mp4', allowEmptyArchive: true
+            archiveArtifacts artifacts: 'cypress/screenshots/**/*.png', allowEmptyArchive: true
+        }
     }
 }
