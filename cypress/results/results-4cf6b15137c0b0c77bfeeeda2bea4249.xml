@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="6.799" tests="1" failures="0">
+  <testsuite name="Root Suite" timestamp="2025-09-22T13:03:57" tests="0" file="cypress\e2e\contact\contact.feature" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Contact Us" timestamp="2025-09-22T13:03:57" tests="1" time="6.793" failures="0">
+    <testcase name="Contact Us İletişim formu gönderme" time="6.758" classname="İletişim formu gönderme">
+    </testcase>
+  </testsuite>
+</testsuites>

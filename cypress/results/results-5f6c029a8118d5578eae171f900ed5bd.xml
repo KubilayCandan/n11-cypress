@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="12.574" tests="1" failures="1">
+  <testsuite name="Root Suite" timestamp="2025-09-22T13:02:59" tests="0" file="cypress\e2e\cart\cart.feature" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Sepet İşlemleri" timestamp="2025-09-22T13:02:59" tests="1" time="12.567" failures="1">
+    <testcase name="Sepet İşlemleri Kullanıcı ürün ekler ve çıkış yapar" time="0.000" classname="Kullanıcı ürün ekler ve çıkış yapar">
+      <failure message="Timed out retrying after 4000ms: Expected to find content: &apos;/logout/i&apos; but never did." type="AssertionError"><![CDATA[AssertionError: Timed out retrying after 4000ms: Expected to find content: '/logout/i' but never did.
+    at Context.eval (https://automationexercise.com/__cypress/tests?p=cypress\e2e\cart\cart.feature:16480:12)
+    at Registry.runStepDefininition (https://automationexercise.com/__cypress/tests?p=cypress\e2e\cart\cart.feature:8502:48)
+    at Object.fn (https://automationexercise.com/__cypress/tests?p=cypress\e2e\cart\cart.feature:15701:43)
+    at runStepWithLogGroup (https://automationexercise.com/__cypress/tests?p=cypress\e2e\cart\cart.feature:15174:29)
+    at Context.eval (https://automationexercise.com/__cypress/tests?p=cypress\e2e\cart\cart.feature:15697:62)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="Mocha Tests" time="4.244" tests="1" failures="1">
+  <testsuite name="Root Suite" timestamp="2025-09-22T13:03:50" tests="0" file="cypress\e2e\home\home.feature" time="0.000" failures="0">
+  </testsuite>
+  <testsuite name="Home page" timestamp="2025-09-22T13:03:50" tests="1" time="4.240" failures="1">
+    <testcase name="Home page Ana sayfa açılır ve temel öğeler görünür" time="0.000" classname="Ana sayfa açılır ve temel öğeler görünür">
+      <failure message="
+Step implementation missing for &quot;sayfa başlığında &quot;Automation Exercise&quot; görmeliyim&quot;.
+
+We tried searching for files containing step definitions using the following search pattern templates:
+
+  - cypress/support/step_definitions/**.js
+
+These templates resolved to the following search patterns:
+
+  - cypress\support\step_definitions\**.js
+
+These patterns matched the following files:
+
+  - cypress\support\step_definitions\signup.steps.js
+  - cypress\support\step_definitions\search.steps.js
+  - cypress\support\step_definitions\contact.steps.js
+  - cypress\support\step_definitions\common.steps.js
+  - cypress\support\step_definitions\cartSteps.js
+
+However, none of these files contained a step definition matching &quot;sayfa başlığında &quot;Automation Exercise&quot; görmeliyim&quot;.
+
+You can implement it using the suggestion(s) below.
+
+  Then(&quot;sayfa başlığında {string} görmeliyim&quot;, function (string) {
+    return &quot;pending&quot;;
+  });
+  " type="Error"><![CDATA[Error: 
+Step implementation missing for "sayfa başlığında "Automation Exercise" görmeliyim".
+
+We tried searching for files containing step definitions using the following search pattern templates:
+
+  - cypress/support/step_definitions/**.js
+
+These templates resolved to the following search patterns:
+
+  - cypress\support\step_definitions\**.js
+
+These patterns matched the following files:
+
+  - cypress\support\step_definitions\signup.steps.js
+  - cypress\support\step_definitions\search.steps.js
+  - cypress\support\step_definitions\contact.steps.js
+  - cypress\support\step_definitions\common.steps.js
+  - cypress\support\step_definitions\cartSteps.js
+
+However, none of these files contained a step definition matching "sayfa başlığında "Automation Exercise" görmeliyim".
+
+You can implement it using the suggestion(s) below.
+
+  Then("sayfa başlığında {string} görmeliyim", function (string) {
+    return "pending";
+  });
+  
+    at Context.eval (https://automationexercise.com/__cypress/tests?p=cypress\e2e\home\home.feature:15715:29)]]></failure>
+    </testcase>
+  </testsuite>
+</testsuites>
