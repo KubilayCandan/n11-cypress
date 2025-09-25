@@ -37,6 +37,24 @@ pipeline {
                 reportFiles: 'mochawesome.html',
                 reportName: 'Cypress HTML Report'
             ])
-        }
+        }post {
+    always {
+        // JUnit raporlarını topla
+        junit 'cypress/results/junit/*.xml'
+
+        // HTML raporu yayınla
+        publishHTML(target: [
+            allowMissing: true,
+            alwaysLinkToLastBuild: true,
+            keepAll: true,
+            reportDir: 'cypress/results/mochawesome',
+            reportFiles: 'mochawesome.html',
+            reportName: 'Cypress HTML Report'
+        ])
+
+        // ✅ Screenshot ve video klasörlerini artifact olarak arşivle
+        archiveArtifacts artifacts: 'cypress/screenshots/**/*.*, cypress/videos/**/*.*', fingerprint: true
+    }
+}
     }
 }
