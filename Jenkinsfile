@@ -4,17 +4,21 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/KubilayCandan/n11-cypress.git'
+                echo '📥 Kodlar çekiliyor...'
+                git branch: 'main', url: 'https://github.com/KubilayCandan/n11-cypress.git'
             }
         }
+
         stage('Install Dependencies') {
             steps {
+                echo '📦 NPM bağımlılıkları yükleniyor...'
                 bat 'npm install'
-                bat 'npx cypress install'
             }
         }
-        stage('Run Cypress Tests & Generate Reports') {
+
+        stage('Run Cypress Tests') {
             steps {
+                echo '🧪 Cypress testleri çalıştırılıyor...'
                 bat 'npm test'
             }
         }
@@ -22,10 +26,12 @@ pipeline {
 
     post {
         always {
-            // JUnit test raporlarını yükle
-            junit 'cypress/results/junit/*.xml'
+            echo '📊 Test raporları ve artefaktlar hazırlanıyor...'
 
-            // HTML raporu yayınla
+            // JUnit XML raporlarını Jenkins'e yükle
+            junit 'cypress/results/*.xml'
+
+            // Mochawesome HTML raporunu yayınla
             publishHTML(target: [
                 allowMissing: true,
                 alwaysLinkToLastBuild: true,
@@ -35,9 +41,8 @@ pipeline {
                 reportName: 'Cypress HTML Report'
             ])
 
-            // Cypress video ve screenshot klasörlerini arşivle
-            archiveArtifacts artifacts: 'cypress/videos/**/*.mp4', allowEmptyArchive: true
-            archiveArtifacts artifacts: 'cypress/screenshots/**/*.png', allowEmptyArchive: true
+            // Cypress video ve screenshot'ları arşivle
+            archiveArtifacts artifacts: 'cypress/videos/**, cypress/screenshots/**', allowEmptyArchive: true
         }
     }
 }
